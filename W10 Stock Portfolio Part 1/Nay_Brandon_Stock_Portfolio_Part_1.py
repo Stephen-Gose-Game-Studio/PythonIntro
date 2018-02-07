@@ -50,7 +50,8 @@ def main():
 
 # The first dictionary, called Names, maps the stock symbol to the company name
 #    (example: "GM" maps to "General Motors").
-Names = {}
+Names = {"GM": "General Motors",
+         }
 
 # The second dictionary, called Prices, maps the stock symbol to a list of 2
 #    floating point numbers corresponding to the buy price (the price the user
