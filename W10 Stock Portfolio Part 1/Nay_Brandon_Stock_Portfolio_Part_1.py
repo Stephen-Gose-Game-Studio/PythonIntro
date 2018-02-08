@@ -83,9 +83,6 @@ def add_prices(symbol):
         else:
             break
 
-
-
-
     # Get current price
     while True:
         try:
