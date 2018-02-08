@@ -18,12 +18,12 @@
 # Asks the user for a stock symbol and name pairing then adds it to the Names
 # dictionary.
 def add_name():
-    n_error = '\nNumbers and special characters not allowed.'
+    n_error = '\n\nNumbers and special characters not allowed.'
 
     # Get stock symbol
     while True:
         try:
-            n_symbol = str(input("Enter a stock symbol: "))
+            n_symbol = str(input("\nEnter a stock symbol: "))
         except ValueError:
             print(n_error)
             continue
@@ -41,8 +41,8 @@ def add_name():
     # Get name
     while True:
         try:
-            n_name = str(input("Enter the company name corresponding"
-                               "to the symbol you just entered: "))
+            n_name = str(input("\nEnter the company name corresponding"
+                               " to the symbol you just entered: "))
         except ValueError:
             print(n_error)
             continue
@@ -52,7 +52,7 @@ def add_name():
                 continue
             else:
                 if n_name == n_symbol:
-                    print('\nName cannot be the same as the symbol.')
+                    print('\n\nName cannot be the same as the symbol.')
                     continue
                 else:
                     if n_name.isalpha():
@@ -70,12 +70,12 @@ def add_name():
 #    price and the current price of the corresponding stock, adding them to the
 #    Prices dictionary.
 def add_prices(symbol):
-    p_error = '\nPlease enter a dollar amount. (x.xx)'
+    p_error = '\n\nPlease enter a dollar amount. (x.xx)'
 
     # Get buy price
     while True:
         try:
-            buy_price = float(input('What was the buy price for this companies'
+            buy_price = float(input('\nWhat was the buy price for this companies'
                                     'stock when you purchased it? '))
         except ValueError:
             print(p_error)
@@ -86,7 +86,7 @@ def add_prices(symbol):
     # Get current price
     while True:
         try:
-            current_price = float(input('What is the current buy price of'
+            current_price = float(input('\nWhat is the current buy price of'
                                         'this companies stock? '))
         except ValueError:
             print(p_error)
@@ -104,13 +104,13 @@ def add_prices(symbol):
 #    and Shares of the corresponding stock, adding them to the Exposure
 #    dictionary.
 def add_exposure(symbol):
-    risk_error = '\nPlease enter a percent in decimal form.'
-    shares_error = '\nPlease enter a number.'
+    risk_error = '\n\nnPlease enter a percent in decimal form.'
+    shares_error = '\n\nPlease enter a number.'
 
     # Get risk
     while True:
         try:
-            risk = format(float(input('What is the % risk? (.xx) ')), '.2f')
+            risk = format(float(input('\nWhat is the % risk? (.xx) ')), '.2f')
         except ValueError:
             print(risk_error)
             continue
@@ -120,7 +120,7 @@ def add_exposure(symbol):
     # Get shares
     while True:
         try:
-            shares = float(input('How many shares do you have? '))
+            shares = float(input('\nHow many shares do you have? '))
         except ValueError:
             print(shares_error)
             continue
