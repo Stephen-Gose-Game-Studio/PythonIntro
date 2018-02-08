@@ -62,7 +62,7 @@ def add_name():
                         continue
 
     global Names
-    Names[n_symbol] = n_name   # add symbol and name to dict
+    Names[n_symbol.upper()] = n_name   # add symbol and name to dict
     return n_symbol.upper()
 
 
@@ -94,7 +94,7 @@ def add_prices(symbol):
         else:
             break
 
-    p_list = (buy_price, current_price)
+    p_list = [buy_price, current_price]
 
     global Prices
     Prices[symbol] = p_list     # add list to Prices dict
@@ -127,7 +127,7 @@ def add_exposure(symbol):
         else:
             break
 
-    e_list = (risk, shares)
+    e_list = [risk, shares]
 
     global Exposure
     Exposure[symbol] = e_list   # add list to Exposure dict
@@ -138,15 +138,37 @@ def add_stock():
     s_symbol = add_name()
     add_prices(s_symbol)
     add_exposure(s_symbol)
+    return s_symbol
 
 
 # create 2 stocks which means 2 entries in each dictionary with the key in each
 #    dictionary being the stock symbol.  Then, the program should display all
 #    the information for each stock.
 def main():
+    symbol_list = []
+
     for x in range(2):
-        add_stock()
-    # print statements
+        symbol_list.append(add_stock())
+
+    print('\n\n--------------------------')
+
+    # Print stock information for each company
+    for x in symbol_list:
+        price_list = Prices[x]      # extract the lists from their dicts
+        expo_list = Exposure[x]     # so we can index them
+        risk = float(expo_list[0]) * 100    # convert float to actual %
+
+        print('\nCompany name:', Names[x])
+
+        print('\nOriginal stock purchased for $' +
+              str(format(price_list[0], '.2f')) + '.')
+        print('Current market price ------- $' +
+              str(format(price_list[1], '.2f')))
+        print('Stocks owned:', expo_list[1])
+        print('Risk:', str(risk) + '%')
+        print()
+
+    print('--------------------------')
 
 
 ###############################################################################
