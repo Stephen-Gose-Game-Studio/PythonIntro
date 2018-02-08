@@ -70,7 +70,7 @@ def add_name():
 #    price and the current price of the corresponding stock, adding them to the
 #    Prices dictionary.
 def add_prices(symbol):
-    p_error = '\nPlease enter a dollar amount (x.xx).'
+    p_error = '\nPlease enter a dollar amount. (x.xx)'
 
     # Get buy price
     while True:
@@ -104,7 +104,33 @@ def add_prices(symbol):
 #    and Shares of the corresponding stock, adding them to the Exposure
 #    dictionary.
 def add_exposure(symbol):
+    risk_error = '\nPlease enter a percent in decimal form.'
+    shares_error = '\nPlease enter a number.'
+
+    # Get risk
+    while True:
+        try:
+            risk = format(float(input('What is the % risk? (.xx) ')), '.2f')
+        except ValueError:
+            print(risk_error)
+            continue
+        else:
+            break
+
+    # Get shares
+    while True:
+        try:
+            shares = float(input('How many shares do you have? '))
+        except ValueError:
+            print(shares_error)
+            continue
+        else:
+            break
+
+    e_list = (risk, shares)
+
     global Exposure
+    Exposure[symbol] = e_list   # add list to Exposure dict
 
 
 # Calls addName, addPrices, and addExposure to add a new stock to the portfolio
