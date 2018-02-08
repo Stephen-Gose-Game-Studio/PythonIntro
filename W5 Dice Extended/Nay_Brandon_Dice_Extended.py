@@ -73,10 +73,10 @@ def main():
         roll_result = roll()
 
         if roll_result == 'player':
-            player_score = player_score + 2
+            player_score += 2
             print("Player wins the roll!\n")
         elif roll_result == 'house':
-            house_score = house_score + 2
+            house_score += 2
             print(" House wins the roll!\n")
 
     print("     " + "\033[4mFINAL SCORE\033[0m\n"  # formatted for underline
