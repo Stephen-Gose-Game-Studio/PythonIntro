@@ -63,7 +63,7 @@ def add_name():
 
     global Names
     Names[n_symbol] = n_name   # add symbol and name to dict
-    return n_symbol
+    return n_symbol.upper()
 
 
 # Takes a stock symbol as an input parameter, then asks the user for the Buy
@@ -75,13 +75,16 @@ def add_prices(symbol):
     # Get buy price
     while True:
         try:
-            buy_price = float(input('\nWhat was the buy price for this companies'
-                                    'stock when you purchased it? '))
+            buy_price = float(input('\nWhat was the buy price for this '
+                                    'companies stock when you purchased it? '))
         except ValueError:
             print(p_error)
             continue
         else:
             break
+
+
+
 
     # Get current price
     while True:
