@@ -28,14 +28,14 @@ def add_name():
             print(n_error)
             continue
         else:
-            if n_symbol == '':
+            if n_symbol == '':  # error if nothing is entered
                 print(n_error)
                 continue
             else:
-                if n_symbol.isalpha():
+                if n_symbol.isalpha():  # check for special characters and nums
                     break
                 else:
-                    print(n_error)
+                    print(n_error)  # error if numbers or special character
                     continue
 
     # Get name
@@ -62,8 +62,8 @@ def add_name():
                         continue
 
     global Names
-    Names[n_symbol.upper()] = n_name   # add symbol and name to dict
-    return n_symbol.upper()
+    Names[n_symbol.upper()] = n_name    # add symbol and name to dict
+    return n_symbol.upper()     # upper() returns all capitals
 
 
 # Takes a stock symbol as an input parameter, then asks the user for the Buy
@@ -148,11 +148,12 @@ def main():
     symbol_list = []
 
     for x in range(2):
+        # Run add_stock and place the stock symbol in symbol_list
         symbol_list.append(add_stock())
 
     print('\n\n--------------------------')
 
-    # Print stock information for each company
+    # Iterate through symbol_list to print stock information for each company
     for x in symbol_list:
         price_list = Prices[x]      # extract the lists from their dicts
         expo_list = Exposure[x]     # so we can index them
