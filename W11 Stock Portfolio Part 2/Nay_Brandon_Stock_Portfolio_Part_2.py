@@ -132,6 +132,13 @@ def add_stock():
     return s_symbol
 
 
+# Finds the maximum expected value of selling a stock.
+def get_sale(buy_price, current_price, risk, shares):
+    step_1 = current_price - buy_price
+    expected_sale_value = (step_1 - risk * current_price) * shares
+    return expected_sale_value
+
+
 # create 2 stocks which means 2 entries in each dictionary with the key in each
 #    dictionary being the stock symbol.  Then, the program should display all
 #    the information for each stock.
