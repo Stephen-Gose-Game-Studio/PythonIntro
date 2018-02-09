@@ -207,7 +207,6 @@ def main():
                         print(error)
                         continue
 
-
     print('\n\n--------------------------')
 
     if len(symbol_list) == 0:
@@ -215,8 +214,8 @@ def main():
     else:
         # Print stock information for each company
         for x in symbol_list:
-            price_list = Prices[x]      # extract the lists from their dicts
-            expo_list = Exposure[x]     # so we can index them
+            price_list = Prices[x]      # [buy_price, current_price]
+            expo_list = Exposure[x]     # [risk, shares]
             risk = float(expo_list[0]) * 100    # convert float to actual %
 
             print('\nCompany name:', Names[x])
