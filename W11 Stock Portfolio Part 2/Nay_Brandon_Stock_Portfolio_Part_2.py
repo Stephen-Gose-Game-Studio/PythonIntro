@@ -2,7 +2,8 @@
 # Brandon Nay
 # Stock Portfolio Part 2
 ###############################################################################
-#
+# In this assignment you will build the second part of a stock portfolio
+# manager.
 ###############################################################################
 
 
@@ -52,7 +53,7 @@ def add_name():
                         print(n_error)
                         continue
 
-    global Names
+    # global Names
     Names[n_symbol.upper()] = n_name    # add symbol and name to dict
     return n_symbol.upper()     # upper() returns all capitals
 
@@ -87,7 +88,7 @@ def add_prices(symbol):
 
     p_list = [buy_price, current_price]
 
-    global Prices
+    # global Prices
     Prices[symbol] = p_list     # add list to Prices dict
 
 
@@ -101,7 +102,7 @@ def add_exposure(symbol):
     # Get risk
     while True:
         try:
-            risk = format(float(input('\nWhat is the % risk? (.xx) ')), '.2f')
+            risk = float(input('\nWhat is the % risk? (.xx) '))
         except ValueError:
             print(risk_error)
             continue
@@ -120,7 +121,7 @@ def add_exposure(symbol):
 
     e_list = [risk, shares]
 
-    global Exposure
+    # global Exposure
     Exposure[symbol] = e_list   # add list to Exposure dict
 
 
@@ -135,37 +136,98 @@ def add_stock():
 # Finds the maximum expected value of selling a stock.
 def get_sale(buy_price, current_price, risk, shares):
     step_1 = current_price - buy_price
-    expected_sale_value = (step_1 - risk * current_price) * shares
+    step_2 = risk * current_price
+    step_3 = step_1 - step_2
+    expected_sale_value = step_3 * shares
     return expected_sale_value
 
 
-# create 2 stocks which means 2 entries in each dictionary with the key in each
-#    dictionary being the stock symbol.  Then, the program should display all
-#    the information for each stock.
-def main():
-    symbol_list = []
+# Runs get_sale for every stock in the portfolio and returns the best option.
+def get_recommended_sale(companies):
+    data = {}   # stores results for each get_sale()
+    for x in companies:             # companies is a list of all stock symbols
+        price_list = Prices[x]      # [buy_price, current_price]
+        expo_list = Exposure[x]     # [risk, shares]
+        value = get_sale(buy_price=price_list[0],
+                         current_price=price_list[1],
+                         risk=expo_list[0],
+                         shares=expo_list[1])
+        data[value] = x     # {expectedValue: stockSymbol}
 
-    for x in range(2):
-        # Run add_stock and place the stock symbol in symbol_list
-        symbol_list.append(add_stock())
+    highest_value = max(data)
+    result = (data[highest_value], highest_value)   # (symbol, sellValue)
+    return result
+
+
+# Change/update/add the main function. This should take no arguments, but
+#    present a menu item consisting of "1. Add Stock", "2. Recommend Sale" and
+#    "3. Exit". If the user selects '1,' the Add Stock function is called, and
+#    when it is complete, the menu is presented again. If the user selects '2,'
+#    the Symbol of the stock corresponding to the highest expected value
+#    (returned by GetSale) should be displayed, and the menu presented after
+#    completion. If the user selects '3', the program should end.
+def main():
+    symbol_list = []    # stores all company names
+    menu_options = {1, 2, 3}
+    error = '\nInvalid input.'
+
+    print('\n\nWelcome!')
+
+    while True:
+        print('\nWhat would you like to do?')
+        print('1. Add Stock\n'
+              '2. Recommend Sale\n'
+              '3. Quit\n')
+        try:
+            mode = int(input('Enter a number: '))
+        except ValueError:
+            print(error)
+            continue
+        else:
+            if mode == '':
+                print(error)
+                continue
+            else:
+                if mode in menu_options:
+                    if mode == 1:
+                        # Run add_stock and place the stock symbol in list
+                        symbol_list.append(add_stock())
+                        continue
+                    elif mode == 2:
+                        if len(symbol_list) == 0:
+                            print('\nNo stocks in database.')
+                            continue
+                        else:
+                            result = get_recommended_sale(symbol_list)
+                            print(result)
+                            continue
+                    elif mode == 3:
+                        break
+                    else:
+                        print(error)
+                        continue
+
 
     print('\n\n--------------------------')
 
-    # Iterate through symbol_list to print stock information for each company
-    for x in symbol_list:
-        price_list = Prices[x]      # extract the lists from their dicts
-        expo_list = Exposure[x]     # so we can index them
-        risk = float(expo_list[0]) * 100    # convert float to actual %
+    if len(symbol_list) == 0:
+        print('No stocks were added.')
+    else:
+        # Print stock information for each company
+        for x in symbol_list:
+            price_list = Prices[x]      # extract the lists from their dicts
+            expo_list = Exposure[x]     # so we can index them
+            risk = float(expo_list[0]) * 100    # convert float to actual %
 
-        print('\nCompany name:', Names[x])
+            print('\nCompany name:', Names[x])
 
-        print('\nOriginal stock purchased for $' +
-              str(format(price_list[0], '.2f')) + '.')
-        print('Current market price ------- $' +
-              str(format(price_list[1], '.2f')))
-        print('Stocks owned:', expo_list[1])
-        print('Risk:', str(risk) + '%')
-        print()
+            print('\nOriginal stock purchased for $' +
+                  str(format(price_list[0], '.2f')) + '.')
+            print('Current market price ------- $' +
+                  str(format(price_list[1], '.2f')))
+            print('Stocks owned:', expo_list[1])
+            print('Risk:', str(risk) + '%')
+            print()
 
     print('--------------------------')
 
