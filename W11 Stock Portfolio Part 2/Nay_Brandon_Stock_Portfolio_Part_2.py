@@ -199,7 +199,9 @@ def main():
                             continue
                         else:
                             result = get_recommended_sale(symbol_list)
-                            print(result)
+                            print('\n\nYour best bet is to sell',
+                                  result[0], 'shares for $' +
+                                  str(format(float(result[1]), ',.2f')))
                             continue
                     elif mode == 3:
                         break
