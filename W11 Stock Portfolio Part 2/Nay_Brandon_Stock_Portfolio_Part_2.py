@@ -200,7 +200,7 @@ def main():
                         else:
                             result = get_recommended_sale(symbol_list)
                             print('\n\nYour best bet is to sell',
-                                  result[0], 'shares for $' +
+                                  result[0], 'stock for $' +
                                   str(format(float(result[1]), ',.2f')))
                             continue
                     elif mode == 3:
