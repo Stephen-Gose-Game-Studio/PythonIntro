@@ -194,16 +194,19 @@ def main():
                         symbol_list.append(add_stock())
                         continue
                     elif mode == 2:
+                        # Get highest expected value stock and report
                         if len(symbol_list) == 0:
                             print('\nNo stocks in database.')
                             continue
                         else:
                             result = get_recommended_sale(symbol_list)
+                            # result = (symbol, sellValue)
                             print('\n\nYour best bet is to sell',
                                   result[0], 'stock for $' +
                                   str(format(float(result[1]), ',.2f')))
                             continue
                     elif mode == 3:
+                        # Quit
                         break
                     else:
                         print(error)
