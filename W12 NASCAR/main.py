@@ -80,7 +80,6 @@ def main():
                 continue
 
         minutes += 1
-        hours = minutes / 60
 
         if winner == 'True':
             break
@@ -95,6 +94,21 @@ Drivers = {'AJ Allmendinger': 'Kroger',
            'Alex Bowman': 'Nationwide Insurance',
            'Aric Almirola': 'Smithfield Foods',
            'Austin Dillon': 'Dow Chemicals',
-           'BJ McLiod': 'Rick Ware Racing'}
+           'BJ McLiod': 'Rick Ware Racing',
+           'Brendan Gaughan': 'Beard Oil',
+           'Chase Elliot': 'Napa Auto Parts',
+           'Clint Bowyer': 'Mobil 1',
+           'Daniel Kennington': 'Lordco Auto Parts',
+           'Darrel Wallace JR': 'Click n Close',
+           'David Ragan': 'Camping World',
+           'Erik Jones': 'DeWalt',
+           'Jeffrey Earnhardt': 'VRX Simulations',
+           'Joey Gase': 'Best Home Furnishings',
+           'Kasey Kahne': 'K-LOVE Radio',
+           'Kyle Weatherman': 'Rick Ware Racing',
+           'Matt Dibenedetto': 'Can-Am',
+           'Paul Menard': 'Menards',
+           'Ryan Newman': 'Caterpillar',
+           'William Byron': 'Axalta'}
 
 main()  # execute
