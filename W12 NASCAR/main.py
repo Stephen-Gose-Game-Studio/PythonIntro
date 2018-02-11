@@ -40,8 +40,9 @@ class Car:
 # Create a list of 20 unique vehicles with random driver and sponsor names.
 def register_drivers():
     driver_list = []
-    for x in Drivers:   # x grabs the key
-        driver_list.append(Car(x, Drivers[x]))
+    for x in Drivers:   # x grabs the key, not the value
+        # create an obj of class Car with attributes from x and add to list
+        driver_list.append(Car(x, Drivers[x]))  # (key, value)->(name, sponsor)
     return driver_list
 
 
@@ -58,10 +59,10 @@ def register_drivers():
 # the driver name and sponsor name.
 ###############################################################################
 def main():
+    race_participants = register_drivers()
+    lead_driver = Car('joe', 'dirt')   # initial placeholder object
     winner = False
     minutes = 0
-    race_participants = register_drivers()
-    lead = Car('joe', 'dirt')
 
     # Begin the race
     while True:
@@ -73,8 +74,8 @@ def main():
                       'SPONSOR:', x.sponsor)
                 winner = 'True'
                 break
-            elif x.odometer > lead.odometer:
-                lead = x
+            elif x.odometer > lead_driver.odometer:
+                lead_driver = x    # new driver takes the lead
                 continue
             else:
                 continue
@@ -85,7 +86,7 @@ def main():
             break
         else:
             print('Minute', minutes, 'complete!\n',
-                  lead.driver_name, 'is in the lead!\n')
+                  lead_driver.driver_name, 'is in the lead!\n')
 
 ###############################################################################
 
