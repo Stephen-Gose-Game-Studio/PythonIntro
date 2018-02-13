@@ -10,7 +10,7 @@ class Animal:
         self.age = 0
         self.color = ''
         self.legs = 0
-        
+
     def __str__(self):
         print(self.animal_type)
         print(self.age)
