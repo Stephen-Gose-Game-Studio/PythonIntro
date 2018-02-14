@@ -19,8 +19,10 @@ class Car:
         # updated using this equation:
         self.odometer += self.speed / 60
 
-        self.avg_speed = (self.avg_speed + self.speed) / 2
-
+        # suspected problem; inaccurate average calculation over time
+        #####################################################
+        self.avg_speed = (self.avg_speed + self.speed) / 2  #
+        #####################################################
 
 ###############################################################################
 
@@ -35,27 +37,35 @@ def register_drivers():
 
 
 def main():
+    # create file to write data to
     with open('data.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         race_participants = register_drivers()
         races = 0
 
-        while races < 1001:
+        # run 1000 race simulations
+        while races < 1000:
             minutes = 0
 
             # Begin the race
-            while races < 1001:
+            while races < 1000:
 
                 for x in race_participants:
                     x.update_speed()
-                    if x.odometer >= 500:
+                    if x.odometer >= 500:   # win condition
                         print(races)
                         print('\n\n', x.driver_name, 'wins with an avg speed',
                               format(x.avg_speed, '.1f'), 'MPH.\n',
                               'SPONSOR:', x.sponsor)
+
+                        # write time and average speed to csv
                         writer.writerow([minutes, x.avg_speed])
+
+                        # reset time and increment races
                         minutes = 0
                         races += 1
+
+                        # rerun register_drivers() to reset instance variables
                         race_participants = register_drivers()
                         break
                     else:

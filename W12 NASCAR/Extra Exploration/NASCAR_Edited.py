@@ -14,12 +14,15 @@ class Car:
         # Every simulated minute, the vehicles pick
         # a new random speed between 1 and 120
         self.speed = randint(1, 120)
-        self.avg_speed.append(self.speed)
+        self.avg_speed.append(self.speed)   # add each speed to list
 
         # and their odometer miles are
         # updated using this equation:
         self.odometer += self.speed / 60
 
+    # average calculation fix: instead of calculating a running average, add
+    # every speed to a list (above) and run this function when win condition is
+    # met.
     def get_avg_speed(self):
         return sum(self.avg_speed) / len(self.avg_speed)
 
