@@ -85,6 +85,8 @@ def getBiggest(num1, num2):
         print('Both numbers are equal.')
         return num1
 
+	# Alternative
+	# return sorted([num1, num2])[1]
 
 ###############################################################################
 # 7. A function that takes a string argument and counts and returns the number
