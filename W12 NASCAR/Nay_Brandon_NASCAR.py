@@ -21,18 +21,21 @@ class Car:
         self.speed = 0
         self.driver_name = driver_name
         self.sponsor = sponsor
-        self.avg_speed = 0
+        self.avg_speed = []
 
     def update_speed(self):
         # Every simulated minute, the vehicles pick
         # a new random speed between 1 and 120
         self.speed = randint(1, 120)
+        self.avg_speed.append(self.speed)   # add each speed to list
 
         # and their odometer miles are
         # updated using this equation:
         self.odometer += self.speed / 60
 
-        self.avg_speed = (self.avg_speed + self.speed) / 2
+    # called upon win condition
+    def get_avg_speed(self):
+        return sum(self.avg_speed) / len(self.avg_speed)
 
 ###############################################################################
 
@@ -68,14 +71,16 @@ def main():
     while True:
         for x in race_participants:
             x.update_speed()
-            if x.odometer >= 500:
+            if x.odometer >= 500:   # win condition
                 print('\n\n', x.driver_name, 'wins with an average speed of',
-                      format(x.avg_speed, '.1f'), 'MPH.\n',
+                      format(x.get_avg_speed(), '.1f'), 'MPH.\n',
                       'SPONSOR:', x.sponsor)
                 winner = 'True'
                 break
-            elif x.odometer > lead_driver.odometer:
+            elif x.odometer > lead_driver.odometer and \
+                    x.driver_name != lead_driver.driver_name:
                 lead_driver = x    # new driver takes the lead
+                print(lead_driver.driver_name, 'has taken the lead!')
                 continue
             else:
                 continue
@@ -85,8 +90,7 @@ def main():
         if winner == 'True':
             break
         else:
-            print('Minute', minutes, 'complete!\n',
-                  lead_driver.driver_name, 'is in the lead!\n')
+            print('Minute', minutes, 'complete!\n')
 
 ###############################################################################
 
