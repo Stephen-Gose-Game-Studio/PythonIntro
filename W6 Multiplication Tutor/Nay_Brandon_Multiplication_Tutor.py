@@ -28,7 +28,7 @@ from random import randint
 
 
 # Ask user how many problems they want to solve, return #
-def num_problems() -> int:
+def num_problems():
     while True:
         try:
             problems = int(input(
@@ -46,7 +46,7 @@ def num_problems() -> int:
 
 # Give a question and output the attempts it took to get it right.
 # Output is used to keep track of total attempts across many problems in main()
-def generate_problem() -> int:
+def generate_problem():
     num_1 = randint(0, 12)
     num_2 = randint(0, 12)
     real_answer = num_1 * num_2
