@@ -25,6 +25,7 @@
 ###############################################################################
 
 from random import randint
+import time
 
 
 # Ask user how many problems they want to solve, return #
@@ -80,14 +81,18 @@ def main():
     number_of_problems = num_problems()
     total_attempts = 0
 
+    start_time = time.clock()
+
     for x in range(number_of_problems):
         total_attempts += generate_problem()
 
+    end_time = time.clock() - start_time
+
     average_tries = total_attempts / number_of_problems
 
-    print('\nCongratulations, you completed {} problems!\n'
+    print('\nCongratulations, you completed {} problems in {:.1f} seconds!\n'
           'It took you an average of {} attempts per problem.'
-          .format(number_of_problems, average_tries))
+          .format(number_of_problems, end_time, average_tries))
 
     print('--------------------------------------------------------')
 
