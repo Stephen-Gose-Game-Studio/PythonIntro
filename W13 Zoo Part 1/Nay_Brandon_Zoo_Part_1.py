@@ -2,6 +2,19 @@
 # Brandon Nay
 # Zoo Part 1
 ###############################################################################
+# For this assignment, you will apply some of the core principles of object
+# oriented programming: Encapsulation and Inheritance.
+###############################################################################
+# A Parent class will need to be created called Animal. Your Animal parent
+# class will need to encapsulate the following:
+#   1. Attributes such as animalType (string), age (number), color (string).
+#      These should be attributes all animals have.
+#   2. A stub function called makeNoise().
+#   3. The __init__ function.
+#   4. Build a __str__ function that will allow you to easily print each
+#      object. Calling print for the object will automatically call the __str__
+#      function.
+###############################################################################
 
 
 class Animal:
@@ -24,7 +37,11 @@ class Animal:
         pass
 
 
-'''Subclasses'''
+###############################################################################
+# You will need to create at least three subclasses (child classes) of Animal.
+# Each subclass will need an __init__ function that calls the parent __init__
+# function.
+###############################################################################
 
 
 class Reptile(Animal):
@@ -54,6 +71,9 @@ class Insect(Animal):
         return super().__str__() + "WINGS:     {}".format(self.wings)
 
 
+###############################################################################
+# You will need to create 2 instances of each subclass and print out the
+# attributes associated with each.
 ###############################################################################
 
 zoo = [Reptile('Snake', 2, 'Orange', 0, True),
