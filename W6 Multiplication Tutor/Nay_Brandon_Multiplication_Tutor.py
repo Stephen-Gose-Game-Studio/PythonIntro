@@ -29,16 +29,18 @@ from random import randint
 
 # Ask user how many problems they want to solve, return #
 def num_problems():
+    error = '\n**Please enter a number 1 to 10.'
+
     while True:
         try:
             problems = int(input(
                 'How many problems would you like to solve? (Max 10): '))
         except ValueError:
-            print('\n**Please enter a number.')
+            print(error)
             continue
         else:
             if problems < 1 or 10 < problems:
-                print("\n**Please enter a number 1 to 10.")
+                print(error)
                 continue
             else:
                 return problems
@@ -55,7 +57,7 @@ def generate_problem():
     while True:
         try:
             question_attempts += 1
-            print('\nWhat is', str(num_1), '*', str(num_2) + '?')
+            print('\nWhat is {} * {}?'.format(num_1, num_2))
             player_answer = int(input("Answer: "))
         except ValueError:
             print("\nPlease enter a number.")
@@ -65,7 +67,7 @@ def generate_problem():
                 print("Your answer is too high!")
                 continue
             elif player_answer < real_answer:
-                print("Your number is too low!")
+                print("Your answer is too low!")
                 continue
             elif player_answer == real_answer:
                 print("--CORRECT--")
@@ -82,10 +84,10 @@ def main():
         total_attempts += generate_problem()
 
     average_tries = total_attempts / number_of_problems
-    print('\nCongratulations, you completed',
-          str(number_of_problems), 'problems!\n' +
-          'It took you an average of', format(average_tries, '.1f'),
-          'attempts per problem.')
+
+    print('\nCongratulations, you completed {} problems!\n'
+          'It took you an average of {} attempts per problem.'
+          .format(number_of_problems, average_tries))
 
     print('--------------------------------------------------------')
 
