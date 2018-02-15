@@ -91,7 +91,7 @@ def main():
     average_tries = total_attempts / number_of_problems
 
     print('\nCongratulations, you completed {} problems in {:.1f} seconds!\n'
-          'It took you an average of {} attempts per problem.'
+          'It took you an average of {:.0f} attempt(s) per problem.'
           .format(number_of_problems, end_time, average_tries))
 
     print('--------------------------------------------------------')
